@@ -1,5 +1,35 @@
 ---
-title: "Untitled"
+title: "A Beautiful Graphic"
+author: "Isabella Alba"
 format: html
+execute:
+  echo: false
 ---
 
+```{r}
+suppressPackageStartupMessages(library(tidyverse))
+```
+
+```{r}
+ggplot(mtcars, aes(x = wt, y = mpg, color = factor(cyl))) +
+  geom_point(size = 4, alpha = 0.8) +
+  geom_smooth(method = "lm", se = FALSE, size = 1.2, linetype = "solid") +
+  scale_color_brewer(palette = "Set1", name = "Cylinders") +
+  labs(
+    title = "Fuel Efficiency Declines with Car Weight",
+    subtitle = "Separate trends shown for 4, 6, and 8 cylinders (mtcars dataset)",
+    x = "Weight (1000 lbs)",
+    y = "Miles per Gallon (mpg)"
+  ) +
+  theme_light(base_size = 16, base_family = "Helvetica") +
+  theme(
+    plot.title = element_text(face = "bold", size = 20, color = "#2c3e50"),
+    plot.subtitle = element_text(size = 14, color = "#7f8c8d"),
+    legend.position = "bottom",
+    legend.title = element_text(size = 13),
+    legend.text = element_text(size = 11),
+    panel.grid.major = element_line(color = "gray90"),
+    panel.grid.minor = element_blank(),
+    panel.border = element_blank()
+  )
+```
